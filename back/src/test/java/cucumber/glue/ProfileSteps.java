@@ -1,6 +1,5 @@
 package cucumber.glue;
 
-import entity.ProfilEntity;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 
 @CucumberContextConfiguration
@@ -29,7 +29,17 @@ public class ProfileSteps {
     @Then("^the user receives profile status code of (-?\\\\d+)$")
     public void getProfileWithIdThenStatusCode(int status) {
         HttpStatus currentStatusCode = response.getStatusCode();
-        assertEquals(status,currentStatusCode.value());
+        assertEquals(status, currentStatusCode.value());
+    }
+        //SCENARIO User wants to get an Profile from an id
+    @When("^the user calls /api/... with profileId is (-?\\\\d+)$")
+    public void getProfileWithIdWhen(int id) {
+
+    }
+    @Then("^the user receives profile status code of (-?\\\\d+)$")
+    public void getProfileWithIdThen(int id) {
+
+
     }
     @And("^the user receives profile from server with the id (-?\\\\d+)$")
     public void getProfileWithIdAnd(int id) {
