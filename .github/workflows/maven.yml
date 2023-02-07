@@ -34,3 +34,6 @@ jobs:
 
       - name: Build
         run: mvn -B package -Dmaven.test.skip --file pom.xml
+        
+      - name: potit test
+        run: tree .
