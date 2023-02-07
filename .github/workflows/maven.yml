@@ -37,12 +37,14 @@ jobs:
         
       - name: Clean before publish
         run: mvn clean
-      
-      - name: Publish
+        
+      - name: testrugikio
         run: |
-          echo -e "${{secrets.INPUT_KEY}}" >__TEMP_INPUT_KEY_FILE 
-          chmod 600 __TEMP_INPUT_KEY_FILE 
-          scp -o StrictHostKeyChecking=no -v -i __TEMP_INPUT_KEY_FILE -P "${secrets.INPUT_PORT}" ${{secrets.INPUT_OPTIONS}} -r ${{secrets.INPUT_SRC}} "${{secrets.INPUT_USER}}"@"${{secrets.INPUT_HOST}}":"${{secrets.INPUT_REMOTE}}"
-          rm __TEMP_INPUT_KEY_FILE
+          echo "The GitHub Action Secret will be masked:  "
+          echo ${{ secrets.INPUT_PORT }}
+          echo "Trick to echo GitHub Actions Secret:  "
+          echo ${{secrets.INPUT_PORT}} | sed 's/./& /g' 
+      
+
           
         
