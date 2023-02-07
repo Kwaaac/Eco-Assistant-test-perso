@@ -24,6 +24,7 @@ hs_err_pid*
 
 
 .idea/
-Front/Front.iml
-Back/Back.iml
+front/Front.iml
+back/Back.iml
 /.env
+front/.idea/
