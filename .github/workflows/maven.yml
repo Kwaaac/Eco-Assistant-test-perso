@@ -19,7 +19,7 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    environment: dev
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -38,12 +38,15 @@ jobs:
       - name: Clean before publish
         run: mvn clean
         
-      - name: testrugikio
-        run: |
-          echo "The GitHub Action Secret will be masked:  "
-          echo ${{ secrets.INPUT_PORT }}
-          echo "Trick to echo GitHub Actions Secret:  "
-          echo ${{secrets.INPUT_PORT}} | sed 's/./& /g' 
+      - name: Publish
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: ${{ secrets.SSH_SRC }}
+          host: ${{ secrets.SSH_HOST }}
+          remote: ${{ secrets.SSH_DIR }}
+          port: ${{ secrets.SSH_PORT }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
       
 
           
