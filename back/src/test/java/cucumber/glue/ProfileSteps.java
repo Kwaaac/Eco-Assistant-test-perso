@@ -31,19 +31,7 @@ public class ProfileSteps {
         HttpStatus currentStatusCode = response.getStatusCode();
         assertEquals(status, currentStatusCode.value());
     }
-        //SCENARIO User wants to get an Profile from an id
-    @When("^the user calls /api/... with profileId is (-?\\\\d+)$")
-    public void getProfileWithIdWhen(int id) {
 
-    }
-    @Then("^the user receives profile status code of (-?\\\\d+)$")
-    public void getProfileWithIdThen(int id) {
-    }
-    @Then("^the user receives profile status code of (-?\\\\d+)$")
-    public void getProfileWithIdThenStatusCode(int status) {
-        HttpStatus currentStatusCode = response.getStatusCode();
-        assertEquals(status,currentStatusCode.value());
-    }
     @And("^the user receives profile from server with the id (-?\\\\d+)$")
     public void getProfileWithIdAnd(int id) {
 
