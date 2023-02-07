@@ -1,6 +1,6 @@
 package cucumber.glue;
 
-import entity.ProfilEntity;
+import com.ecoassitant.back.entity.ProfilEntity;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
