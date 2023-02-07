@@ -34,12 +34,3 @@ jobs:
 
       - name: Build
         run: mvn -B package -Dmaven.test.skip --file pom.xml
-
-
-      - name: Docker Build & Push Action
-          uses: mr-smithers-excellent/docker-build-push@v5.9
-          with:
-            image: kwaaac/ci_cd_pipeline
-            registry: docker.io
-            username: kwaaac
-            password: ${{ secrets.DOCKERHUB_TOKEN }}
