@@ -12,12 +12,14 @@ on:
   push:
     branches: [ "maxime-test-ci-docker" ]
 
+env:
+  MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
+  MAIL_TOKEN: ${{ secrets.MAIL_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
-      MAIL_TOKEN: ${{ secrets.MAIL_TOKEN }}
+
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
