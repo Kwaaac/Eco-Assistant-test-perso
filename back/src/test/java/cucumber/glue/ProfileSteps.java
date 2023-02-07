@@ -29,9 +29,14 @@ public class ProfileSteps {
     @Then("^the user receives profile status code of (-?\\\\d+)$")
     public void getProfileWithIdThenStatusCode(int status) {
         HttpStatus currentStatusCode = response.getStatusCode();
+<<<<<<< HEAD
         assertEquals(status, currentStatusCode.value());
     }
 
+=======
+        assertEquals(status,currentStatusCode.value());
+    }
+>>>>>>> cucumber-test-profiles
     @And("^the user receives profile from server with the id (-?\\\\d+)$")
     public void getProfileWithIdAnd(int id) {
 
