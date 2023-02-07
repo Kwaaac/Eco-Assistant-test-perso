@@ -10,9 +10,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "maxime-test-ci-docker" ]
 
 jobs:
   build:
@@ -27,8 +25,11 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
+    - name: Test
+      run: mvn -B test --file pom.xml
+
+    - name: Build
       env:
         MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
         MAIL_TOKEN: ${{ secrets.MAIL_TOKEN }}
-      run: mvn -B package --file pom.xml
+      run: mvn -B package -Dmaven.test.skip --file pom.xml
