@@ -15,7 +15,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
+      MAIL_TOKEN: ${{ secrets.MAIL_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
@@ -26,13 +28,16 @@ jobs:
           cache: maven
 
       - name: Test
-        env:
-          MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
-          MAIL_TOKEN: ${{ secrets.MAIL_TOKEN }}
         run: mvn -B test --file pom.xml
 
       - name: Build
-        env:
-          MAIL_ADDRESS: ${{ secrets.MAIL_ADDRESS }}
-          MAIL_TOKEN: ${{ secrets.MAIL_TOKEN }}
         run: mvn -B package -Dmaven.test.skip --file pom.xml
+
+
+      - name: Docker Build & Push Action
+          uses: mr-smithers-excellent/docker-build-push@v5.9
+          with:
+            image: kwaaac/ci_cd_pipeline
+            registry: docker.io
+            username: kwaaac
+            password: ${{ secrets.DOCKERHUB_TOKEN }}
