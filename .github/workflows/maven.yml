@@ -35,9 +35,16 @@ jobs:
       - name: Build
         run: mvn -B package -Dmaven.test.skip --file pom.xml
         
-      - name: potit test
-        run: |
-          tree .
-          mvn clean 
-          tree .
+      - name: Clean before publish
+        run: mvn clean
+      
+      - name: Publish
+        uses: nogsantos/scp-deploy@master
+        with:
+          src: ${{ secrets.SRC }}
+          host: ${{ secrets.SSH_HOST }}
+          remote: ${{ secrets.SSH_DIR }}
+          port: ${{ secrets.SSH_PORT }}
+          user: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
         
