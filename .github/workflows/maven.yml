@@ -48,6 +48,15 @@ jobs:
           user: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           option: C
+          
+      - name: compose
+        run: |
+          echo ${{ secrets.SSH_KEY }} > tmp
+          chmod 600 tmp
+          shh -i tmp ecoassistant@92.222.78.22
+          cd Eco-Assistant
+          docker compose build
+          docker compose up
       
 
           
