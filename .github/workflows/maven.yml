@@ -51,9 +51,9 @@ jobs:
           
       - name: compose
         run: |
-          echo -e "${{ secrets.SSH_KEY }}" > tmp
+          echo -e ${{ secrets.SSH_KEY }} > tmp
           chmod 600 tmp
-          shh -i tmp ecoassistant@92.222.78.22
+          ssh -i tmp ecoassistant@92.222.78.22
           cd Eco-Assistant
           docker compose build
           docker compose up
