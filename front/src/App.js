@@ -7,7 +7,7 @@ function App() {
                 <img src={require('./logo_ea.PNG')} className="App-logo" alt="logo"/>
                 <p>
                     Bienvenue sur la page d'accueil d'Eco-Assistant, un utilitaire pour estimer l'impact écologique de
-                    votre projet
+                    vos projets informatiques
                 </p>
                 <a
                     className="App-link"
