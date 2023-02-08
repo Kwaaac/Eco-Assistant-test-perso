@@ -37,17 +37,7 @@ jobs:
         
       - name: Clean before publish
         run: mvn clean
-        
-      - name: Publish
-        uses: nogsantos/scp-deploy@master
-        with:
-          src: ${{ secrets.SSH_SRC }}
-          host: ${{ secrets.SSH_HOST }}
-          remote: ${{ secrets.SSH_DIR }}
-          port: ${{ secrets.SSH_PORT }}
-          user: ${{ secrets.SSH_USER }}
-          key: ${{ secrets.SSH_KEY }}
-          option: C
+      
           
       - name: ssh scp ssh pipelines
         uses: cross-the-world/ssh-scp-ssh-pipelines@latest
@@ -57,7 +47,10 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.SSH_PORT }}
           
-          first_ssh: |
+          scp: |
+            '${{ secrets.SSH_SRC }}' => ${{ secrets.SSH_DIR }}
+          
+          last_ssh: |
             ./docker.sh 
       
 
